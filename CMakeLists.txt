@@ -1,5 +1,16 @@
 cmake_minimum_required (VERSION 2.8.12)
 
+if(NOT COMPILER_PREFIX)
+    set(CMAKE_C_COMPILER arm-none-eabi-gcc)
+    set(CMAKE_AR arm-none-eabi-ar)
+else ()
+    set(CMAKE_C_${COMPILER_PREFIX}/COMPILER arm-none-eabi-gcc)
+    set(CMAKE_AR ${COMPILER_PREFIX}/arm-none-eabi-ar)
+endif ()
+
+SET (CMAKE_C_COMPILER_WORKS 1)
+SET (CMAKE_CXX_COMPILER_WORKS 1)
+
 # Project specific settings
 set(application_name "standard")
 set(BMI088_DIR ${CMAKE_SOURCE_DIR}/components/bmi088)
@@ -214,8 +225,8 @@ target_link_libraries(${elf_file} PUBLIC ${BMI088_DIR}/libarm_cortexM4lf_math.a)
 target_link_libraries(${elf_file} PUBLIC ${BMI088_DIR}/libahrs.a)
 
 # set additional for compiler and linker: optimization and generate map file
-set(additional_compiler_flags ${opt_level})
-set(additional_linker_flags -lm -Wl,-Map=${map_file},--cref,--no-warn-mismatch)
+set(additional_compiler_flags ${opt_level} -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER)
+set(additional_linker_flags -lm -Wl,-Map=${map_file},--cref,--no-warn-mismatch -specs=nano.specs -specs=nosys.specs)
 target_compile_options(${elf_file} PRIVATE ${additional_compiler_flags})
 target_link_libraries(${elf_file} PRIVATE ${additional_linker_flags})
 
