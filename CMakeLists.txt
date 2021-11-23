@@ -12,6 +12,7 @@ SET (CMAKE_C_COMPILER_WORKS 1)
 SET (CMAKE_CXX_COMPILER_WORKS 1)
 
 SET(ARM_OBJCOPY_EXECUTABLE arm-none-eabi-objcopy)
+SET(ARM_OBJDUMP_EXECUTABLE arm-none-eabi-objdump)
 
 # Indicate we aren't compiling for an OS
 set(CMAKE_SYSTEM_NAME Generic)
