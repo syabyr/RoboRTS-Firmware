@@ -207,10 +207,10 @@ set(map_file ${application_name}.map)
 set(lss_file ${application_name}.lss)
 
 # STM32-specific settings
-set(DEVICE_FAMILY STM32F407xx)
+set(DEVICE_FAMILY STM32F427xx)
 
 # Used linker file (just for testing)
-get_filename_component(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/tools/linker/STM32F407IGHx_FLASH.ld ABSOLUTE)
+get_filename_component(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/tools/linker/STM32F427IIHx_FLASH.ld ABSOLUTE)
 
 # Use LTO? WARNING: This might break the code
 #set(ADDITIONAL_CORE_FLAGS -flto)
