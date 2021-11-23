@@ -11,6 +11,14 @@ endif ()
 SET (CMAKE_C_COMPILER_WORKS 1)
 SET (CMAKE_CXX_COMPILER_WORKS 1)
 
+SET(ARM_OBJCOPY_EXECUTABLE arm-none-eabi-objcopy)
+
+# Indicate we aren't compiling for an OS
+set(CMAKE_SYSTEM_NAME Generic)
+
+# Set processor type
+set(CMAKE_SYSTEM_PROCESSOR arm)
+
 # Project specific settings
 set(application_name "standard")
 set(BMI088_DIR ${CMAKE_SOURCE_DIR}/components/bmi088)
